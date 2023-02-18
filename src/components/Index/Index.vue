@@ -1,31 +1,40 @@
+<template>
+<section class="container">
+    <div class="cards">
+      <Card v-for="item in data" 
+       :key="item.id"
+       :item="item"
+      />
+    </div>
+</section>
+<div class="pagination">
+  <Pagination :info="info" 
+    @getPage="getCharacters" 
+  />
+</div>
+</template>
+
 <script setup>
 import Card from '@/components/Card/Card.vue';
-import './style.scss'
-import axios from "axios"
-
+import Pagination from '@/components/Pagination/Pagination.vue'
 import { ref, onMounted } from 'vue';
 
-var data = ref();
+import './media.scss'
+import './style.scss'
 
-onMounted( async() => {
-    const respone = await axios.get("https://rickandmortyapi.com/api/character");
-    data.value =  await respone.data.results;
-    console.log(data);
+const data = ref([]);
+const info = ref(null);
+
+async function getCharacters(pageNum = 1) {
+  const response = await fetch("https://rickandmortyapi.com/api/character" + `?page=${pageNum}`);
+  const characters = await response.json();
+  data.value = characters.results;
+  info.value = characters.info;
+}
+
+onMounted(async () => {
+  await getCharacters();
 });
 
 </script>
 
-<template>
-<section class="container">
-    <div class="cards">
-        <Card v-for="item in data" 
-        :key="item.id"
-        :item="item"
-        />
-    </div>
-</section>
-</template>
-
-<style scoped>
-
-</style>

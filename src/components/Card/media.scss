@@ -1,0 +1,37 @@
+.card {
+    width: 300px;
+    height: 330px;
+    margin-bottom: 30px;
+    &__inform {
+        display: inline-grid;
+        grid-template-columns: 1fr 1fr;
+        grid-row-gap: 3px;
+
+        width: 300px;
+        margin-bottom: 1px;
+
+        &-status,
+        &-location {
+            text-align: right;
+        }
+        
+        &-gender,
+        &-location {
+            color: #8D8D8D;
+        }
+    }
+    &__image {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+.green {
+    color: #00BD4C;
+}
+.red {
+    color: #E50000;
+}
+.grey {
+    color: #7B7B7B;
+}

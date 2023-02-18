@@ -11,11 +11,6 @@ const router = createRouter({
             name: 'Index',
             component: Index
         },
-        // {
-        //     path: "/products/:id",
-        //     name: "Product",
-        //     component: Product,
-        // },
         {
             path: '/:pathMatch(.*)*',
             name: 'NotFound',
