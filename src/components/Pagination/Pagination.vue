@@ -10,7 +10,6 @@
     @click="getPage(--currentPage)" 
     :disable="!info?.prev" 
   />
-
   <Button v-else-if="currentPage - 2 > 0" 
     :value="currentPage - 2" 
     @click="getPage(--currentPage)" 
@@ -37,13 +36,11 @@
     @click="getPage(++currentPage)" 
     :disable="!info?.next"
   />
-        
   <Button v-else-if="currentPage == info?.pages - 2"
     :value="info?.pages - 1" 
     @click="getPage(++currentPage)" 
     :disable="!info?.next" 
   />
-        
   <Button v-else-if="currentPage == info?.pages - 3"
     :value="info?.pages - 1" 
     @click="getPage(++currentPage)" 
