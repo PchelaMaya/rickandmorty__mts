@@ -28,6 +28,7 @@ const info = ref(null);
 async function getCharacters(pageNum = 1) {
   const response = await fetch("https://rickandmortyapi.com/api/character" + `?page=${pageNum}`);
   const characters = await response.json();
+  
   data.value = characters.results;
   info.value = characters.info;
 }
