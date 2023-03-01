@@ -1,17 +1,17 @@
 <template>
-<section class="container">
-    <div class="cards">
-      <Card v-for="item in data" 
-       :key="item.id"
-       :item="item"
-      />
-    </div>
-</section>
-<div class="pagination">
-  <Pagination :info="info" 
-    @getPage="getCharacters" 
-  />
-</div>
+  <section class="container">
+      <div class="cards">
+        <Card v-for="item in data" 
+          :key="item.id"
+          :item="item"
+        />
+      </div>
+  </section>
+  <div class="pagination">
+    <Pagination :info="info" 
+      @getPage="getCharacters" 
+    />
+  </div>
 </template>
 
 <script setup>
@@ -26,15 +26,23 @@ const data = ref([]);
 const info = ref(null);
 
 async function getCharacters(pageNum = 1) {
-  const response = await fetch("https://rickandmortyapi.com/api/character" + `?page=${pageNum}`);
-  const characters = await response.json();
-  
-  data.value = characters.results;
-  info.value = characters.info;
+  try {
+    const response = await fetch("https://rickandmortyapi.com/api/character" + `?page=${pageNum}`);
+    const characters = await response.json();
+    
+    data.value = characters.results;
+    info.value = characters.info;
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 onMounted(async () => {
-  await getCharacters();
+  try {
+    await getCharacters();
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 </script>

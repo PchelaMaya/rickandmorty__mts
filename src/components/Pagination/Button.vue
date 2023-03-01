@@ -3,7 +3,7 @@
       @click="!disable ? emit('click') : undefined"
       :class="{ enable: !disable, disable: disable }"
     >
-    {{ value }}
+      {{ value }}
     </span>
 </template>
 
